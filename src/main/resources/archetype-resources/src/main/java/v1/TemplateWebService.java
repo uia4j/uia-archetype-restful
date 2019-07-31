@@ -13,8 +13,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @Path("/template")
 public class TemplateWebService extends AbstractWebService {
+
+    private static final Logger LOGGER = LogManager.getLogger(TemplateWebService.class);
 
     public TemplateWebService() {
     }
@@ -24,7 +29,10 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object insert(Object data) {
-    	return data;
+        String tx = tx();
+        LOGGER.info(String.format("[%s][POST] v1/template", tx));
+
+        return data;
     }
 
     @PUT
@@ -32,7 +40,10 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object update(Object data) {
-    	return data;
+        String tx = tx();
+        LOGGER.info(String.format("[%s][PUT] v1/template", tx));
+
+        return data;
     }
 
     @DELETE
@@ -40,6 +51,8 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void delete(@PathParam("id") String id) {
+        String tx = tx();
+        LOGGER.info(String.format("[%s][DELETE] v1/template/%s", tx, id));
     }
 
     @GET
@@ -47,7 +60,10 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public List<Object> queryAll() {
-    	ArrayList<Object> result = new ArrayList<Object>();
+        String tx = tx();
+        LOGGER.info(String.format("[%s][GET] v1/template", tx));
+
+        ArrayList<Object> result = new ArrayList<Object>();
 
     	return result;
     }
@@ -57,6 +73,9 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object queryOne(@PathParam("id") String id) {
-    	return null;
+        String tx = tx();
+        LOGGER.info(String.format("[%s][GET] v1/template/%s", tx, id));
+
+        return null;
     }
 }

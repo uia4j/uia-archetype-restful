@@ -15,16 +15,19 @@ The generated project is configured ready:
 ![image/p1.png](image/p1.png)
 
 ### AppResourceConfig.java
-API root endpoint at `/api/v1`:
+Setup package to be scanned and register some filters.
 ```java
-@ApplicationPath("/api/v1")
 public class AppResourceConfig extends ResourceConfig {
-}
-```
 
-API implementation package:
-```java
-packages("gs.sara.webapi.v1");
+    public AppResourceConfig() {
+        packages("com.gs.swim.web.v1");
+
+        register(SQLExceptionMapper.class);
+
+        register(MyContainerResponseFilter.class);
+        register(MyContextResolver.class);
+        register(MyJacksonFeature.class);
+    }
 ```
 
 ### SystemWebService.java
@@ -41,6 +44,8 @@ public class SystemWebService extends AbstractWebService {
 1. clone this source and opened by Eclipse IDE
 
 2. Install the archetype to local m2 repository
+
+3. Reindex local repository
 
 ### New Maven project
 ![image/p1.png](image/p3.png)

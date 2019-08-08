@@ -1,10 +1,7 @@
 package ${package};
 
-import javax.ws.rs.ApplicationPath;
-
 import org.glassfish.jersey.server.ResourceConfig;
 
-@ApplicationPath("/api/v1")
 public class AppResourceConfig extends ResourceConfig {
 
     public AppResourceConfig() {

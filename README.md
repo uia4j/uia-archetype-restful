@@ -41,11 +41,11 @@ public class SystemWebService extends AbstractWebService {
 ## How to Use
 ### Install to the local repository
 ![image/p1.png](image/p2.png)
-1. clone this source and opened by Eclipse IDE
+1. clone this source and open by Eclipse IDE
 
 2. Install the archetype to local m2 repository
 
 3. Reindex local repository
 
-### New Maven project
+### New Maven Project
 ![image/p1.png](image/p3.png)

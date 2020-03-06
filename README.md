@@ -40,12 +40,17 @@ public class SystemWebService extends AbstractWebService {
 
 ## How to Use
 ### Install to the local repository
-![image/p1.png](image/p2.png)
 1. clone this source and open by Eclipse IDE
-
 2. Install the archetype to local m2 repository
+
+  ![image/p1.png](image/p2.png)
 
 3. Reindex local repository
 
+  ![image/p1.png](image/p4.png)
+
 ### New Maven Project
-![image/p1.png](image/p3.png)
+1. Check __Include snapshot archetypes__ to display SNAPSHOT items.
+2. Select __uia-archetype-restful__
+
+  ![image/p1.png](image/p3.png)

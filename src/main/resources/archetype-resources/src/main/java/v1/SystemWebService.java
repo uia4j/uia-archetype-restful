@@ -18,16 +18,12 @@ public class SystemWebService extends AbstractWebService {
 
     private static final Logger LOGGER = LogManager.getLogger(SystemWebService.class);
 
-    public SystemWebService() {
-    }
-
     @GET
     @Path("/version")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object version() {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][GET] v1/system/version", tx));
+        LOGGER.info(String.format("[%s][GET] /version", tx()));
 
         return create(
                 "name", "RESTful API",
@@ -39,8 +35,7 @@ public class SystemWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object test(@PathParam("id") String id, @QueryParam("flag") String flag) {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][GET] v1/system/test/%s?flag=%s", tx, id, flag));
+        LOGGER.info(String.format("[%s][GET] /test/%s?flag=%s", tx(), id, flag));
 
         return create(
                 "id", id,

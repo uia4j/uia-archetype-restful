@@ -1,6 +1,9 @@
 package ${package};
 
 import java.io.FileInputStream;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -16,6 +19,15 @@ public class AppListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent evt) {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            try {
+                DriverManager.deregisterDriver(drivers.nextElement());
+            }
+            catch (Exception e) {
+            }
+        }
+        LOGGER.info("APP> destroyed");
     }
 
     @Override
@@ -23,20 +35,16 @@ public class AppListener implements ServletContextListener {
         ServletContext sc = evt.getServletContext();
         try {
             String appPath = sc.getRealPath("/") + "WEB-INF" + System.getProperty("file.separator") + "app.properties";
-            LOGGER.info("properties = " + appPath);
+            LOGGER.info("APP> properties = " + appPath);
 
             try (FileInputStream fis = new FileInputStream(appPath)) {
                 Properties p = new Properties(System.getProperties());
                 p.load(fis);
+                p.load(AppListener.class.getResourceAsStream("/pom.properties"));
                 System.setProperties(p);
             }
 
-            try {
-                LOGGER.info(String.format("version=%s", System.getProperty("version")));
-            }
-            catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            LOGGER.info(String.format("APP> version=%s", System.getProperty("app.version")));
         }
         catch (Exception e) {
             e.printStackTrace();

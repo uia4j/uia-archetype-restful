@@ -21,27 +21,20 @@ public class TemplateWebService extends AbstractWebService {
 
     private static final Logger LOGGER = LogManager.getLogger(TemplateWebService.class);
 
-    public TemplateWebService() {
-    }
-
     @POST
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object insert(Object data) {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][POST] v1/template", tx));
+        LOGGER.info(String.format("[%s][POST] /", tx()));
 
         return data;
     }
 
     @PUT
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object update(Object data) {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][PUT] v1/template", tx));
+        LOGGER.info(String.format("[%s][PUT] /", tx()));
 
         return data;
     }
@@ -51,8 +44,7 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void delete(@PathParam("id") String id) {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][DELETE] v1/template/%s", tx, id));
+        LOGGER.info(String.format("[%s][DELETE] /%s", tx(), id));
     }
 
     @GET
@@ -60,8 +52,7 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public List<Object> queryAll() {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][GET] v1/template", tx));
+        LOGGER.info(String.format("[%s][GET] /", tx()));
 
         ArrayList<Object> result = new ArrayList<Object>();
 
@@ -73,8 +64,7 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object queryOne(@PathParam("id") String id) {
-        String tx = tx();
-        LOGGER.info(String.format("[%s][GET] v1/template/%s", tx, id));
+        LOGGER.info(String.format("[%s][GET] /%s", tx(), id));
 
         return null;
     }

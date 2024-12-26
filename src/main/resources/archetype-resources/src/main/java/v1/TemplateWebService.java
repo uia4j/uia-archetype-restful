@@ -25,7 +25,7 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object insert(Object data) {
-        LOGGER.info(String.format("[%s][POST] /", tx()));
+        LOGGER.info(String.format("[%s][POST] ", tx()));
 
         return data;
     }
@@ -34,7 +34,7 @@ public class TemplateWebService extends AbstractWebService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Object update(Object data) {
-        LOGGER.info(String.format("[%s][PUT] /", tx()));
+        LOGGER.info(String.format("[%s][PUT] ", tx()));
 
         return data;
     }
@@ -48,11 +48,10 @@ public class TemplateWebService extends AbstractWebService {
     }
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public List<Object> queryAll() {
-        LOGGER.info(String.format("[%s][GET] /", tx()));
+        LOGGER.info(String.format("[%s][GET] ", tx()));
 
         ArrayList<Object> result = new ArrayList<Object>();
 
